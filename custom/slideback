@@ -1,0 +1,180 @@
+<!--code by Mikael Janhonen-->
+<html>
+
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="customtyyli.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+</script>
+
+<?php
+//jos kuvasuhde pitää säilylttää
+if($_GET['fixratio'] == "yes"){
+	if($_GET['width'] * 9 <= $_GET['height'] * 16){
+		$width = $_GET['width'];
+		$height = ($width * 9) / 16;
+		$heightfix = ($_GET['height'] - $height) / 2;
+		echo '<style>
+		.aelement{
+			top:'.$heightfix.';
+		}
+		</style>';
+	} else if($_GET['width'] * 9 > $_GET['height'] * 16){
+		$height = $_GET['height'];
+		$width = ($height * 16) / 9;
+		$widthfix = ($_GET['width'] - $width) / 2;
+		echo '<style>
+		.aelement{
+			left:'.$widthfix.';
+		}
+		</style>';
+	}
+//jos ei
+} else {
+	$width = $_GET['width'];
+	$height = $_GET['height'];
+}
+$changespeed = $_GET['changespeed'];
+$changetime = $_GET['changetime'];
+
+echo '</head>';
+echo '<body style="overflow:hidden;">';
+
+
+//scripti joka siirtää kuvat toiseen kansioon jos niiden päivämäärä on ylitetty. Päivämäärät merkitaan tiedostonimeen ;vvvv-kk-pp;
+$kuvatkansio = scandir("/tykkidata/kuvat/");
+$o = 2;
+while(isset($kuvatkansio[$o])) {
+        list($turha, $parasta_ennen, $turha2) = explode(";", $kuvatkansio[$o]);
+
+        $tanaan = date("Y-m-d", time());
+
+        $parasta_ennen_timestamp = strtotime($parasta_ennen);
+        $tanaan_timestamp = strtotime($tanaan);
+
+        //jos vanhentumispäivämäärä on ylitetty
+        if(!empty($parasta_ennen_timestamp) && $tanaan_timestamp > $parasta_ennen_timestamp) {
+                //siirrä kuva pois kuvatkansiosta
+                rename("/tykkidata/kuvat/" . $kuvatkansio[$o], "/tykkidata/arkisto/vanhat/" . $kuvatkansio[$o]);
+        }
+        ++$o;
+}
+
+
+
+//Looppi jossa luodaan kuvat kansiossa oleville kuville omat .a luokat eli diat.
+$kuvatkansio = scandir("/tykkidata/kuvat/"); //scandir palauttaa taulukon joissa [0] = . ja [1] = .. joten aloitetaan loopit aina arvolla 2.
+$i = 2;
+
+
+while(isset($kuvatkansio[$i])) {
+	echo '<img class="a'.$i.' aelement" src="tykkidata/kuvat/'.$kuvatkansio[$i].'" width="'.$width.'" height="'.$height.'">';
+	echo '<script>
+	var text'.$i.' = false;
+	</script>';
+	++$i;
+}
+
+
+//Looppi jossa luodaan tekstit kansiossa oleville tekstitiedostoille omat .a luokat eli diat.
+//Tekstit laitetaan myös pre tagien sisään, sekä luokkaan .pre
+$tekstitkansio = scandir("/tykkidata/tekstit/");
+$u = 2;
+while(isset($tekstitkansio[$u])) {
+	$data = file_get_contents_utf8("tykkidata/tekstit/" . $tekstitkansio[$u]);
+	echo '
+		<div class="a'.$i.' aelement"><pre class="pre p'.$i.'" style="width:'.($width-30).'px;">'.$data.'</pre></div>
+		';
+	echo '<script>
+	var text'.$i.' = true;
+	</script>';
+
+	++$u;
+	++$i;
+}
+
+?>
+
+</body>
+
+<script>
+
+<?php
+//kierron vaihtojen ja viiveiden ajat
+echo 'var vaihto='.$changespeed.'
+';
+echo 'var viive='.$changetime.'
+';
+?>
+
+//Luodaan functio kierto diojen vaihtamista varten.
+function kierto(){
+<?php
+
+//Looppi jossa luodaan oikea määrä kerroksia functioon kierto();
+$y = $i - 2;
+$t = 2;
+while($y > 0) {
+	echo '	$(".a'.$t.'").fadeIn(vaihto);
+	if(text'.$t.' == true){
+		makeHeightRight(".p'.$t.'");
+	}
+	setTimeout(function(){
+	$(".a'.$t.'").fadeOut(vaihto);';
+	++$t;
+	--$y;
+	}
+
+	//kutsutaan funktio itse, jotta kierto jatkuisi loputtomiin
+	echo "kierto();";
+
+//Looppi jossa luodaan oikea määrä function sulkevia kerroksia
+$y = $i - 2;
+while($y > 0) {
+	echo '},viive);
+	';
+	--$y;
+	}
+?>
+}
+
+
+//Tiedoston ladattua kutsutaan diojenvaihtofunctio kierto();
+$(document).ready(function(){
+        kierto();
+});
+
+</script>
+</html>
+
+
+
+
+<?php
+//functiota ym.
+function file_get_contents_utf8($fn) {
+     $content = file_get_contents($fn);
+      return mb_convert_encoding($content, 'UTF-8',
+          mb_detect_encoding($content, 'UTF-8, ISO-8859-1', true));
+}
+?>
+<script>
+function makeHeightRight(classname){
+	var preheight = $(classname).height();
+<?php
+	echo '	while(preheight > '.($height - 30).'){
+';
+?>
+		var fontlast = $(classname).css("font-size");
+	        var fontlasts = fontlast.split("p");
+	        var newfont = fontlasts[0] - 1;
+	        $(classname).css({"font-size":newfont});
+		preheight = $(classname).height();
+
+	}
+<?php
+	echo '$(classname).css({"height":"'.($height-30).'"});
+';
+?>
+}
+</script>
