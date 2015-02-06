@@ -22,5 +22,8 @@ $SWITCHTIME = 1500;
 // Default slide switching style. Currently available = { 'noeffect', 'fade', 'slidefromleft', 'slidefromright' }
 $CHANGETYPE = 'fade';
 
+// After how many loops the show will be refreshed
+$REFRESHTIMES = 2;
+
 // Option to play the video audio. 1 = on, 0 = off
 $VIDEOSOUND = 1;
