@@ -194,10 +194,12 @@ while($y > 0) {
 }
 
 	//kutsutaan funktio itse, jotta kierto jatkuisi loputtomiin
-	echo 'if(loopcount == '.$REFRESHTIMES.'){
-		location.reload();	
-	}
-	kierto();
+        echo 'if(loopcount == '.$REFRESHTIMES.'){
+                location.reload();
+        } else {
+                kierto();
+        }
+
 ';
 
 	//Looppi jossa luodaan oikea määrä function sulkevia kerroksia
