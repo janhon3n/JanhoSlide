@@ -92,6 +92,7 @@ while(isset($videotkansio[$u])) {
 var textnums = [];
 var mhrintervals = [];
 var mhrcount = 0;
+var loopcount = 0;
 </script>
 </body>
 
@@ -156,6 +157,7 @@ function changeSlide(from, to){
 
 //Luodaan functio kierto diojen vaihtamista varten.
 function kierto(){
+	loopcount++;
 <?php
 
 
@@ -192,8 +194,11 @@ while($y > 0) {
 }
 
 	//kutsutaan funktio itse, jotta kierto jatkuisi loputtomiin
-	echo "kierto();
-";
+	echo 'if(loopcount == '.$REFRESHTIMES.'){
+		location.reload();	
+	}
+	kierto();
+';
 
 	//Looppi jossa luodaan oikea määrä function sulkevia kerroksia
 	$y = $i - 2;
