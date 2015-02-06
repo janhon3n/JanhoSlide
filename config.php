@@ -23,7 +23,7 @@ $SWITCHTIME = 1500;
 $CHANGETYPE = 'fade';
 
 // After how many loops the show will be refreshed
-$REFRESHTIMES = 2;
+$REFRESHTIMES = 20;
 
 // Option to play the video audio. 1 = on, 0 = off
 $VIDEOSOUND = 1;
