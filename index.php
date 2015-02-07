@@ -8,6 +8,7 @@ echo $LAN->frontpagetitle;
 ?>
 </title>
 <meta charset="utf8">
+<link rel="shortcut icon" href="janhoicon.png">
 <link rel="stylesheet" href="tyyli.css">
 <script src="jquery/jquery-1.11.2.js">
 </script>
