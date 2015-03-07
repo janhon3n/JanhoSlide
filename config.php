@@ -2,7 +2,7 @@
 // The configuration file for janhoslide
 
 // Include the right language pack. REQUIRED. Currently available = {'lan/fi.php', 'lan/eng.php' }
-require 'lan/fi.php';
+require 'lan/eng.php';
 
 // Folder for media
 $IMG = 'images';
