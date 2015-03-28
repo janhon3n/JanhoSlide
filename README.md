@@ -16,6 +16,8 @@ JanhoSlide features in its current version:
 
 The media files need to be located in two folders, one for images, one for videos. These folders can be changed but defaults are "/images" and "/videos". You can determine when these media files are moved to archive folder. You can do this by setting the last show date to the mediafiles filename with syntax: ":yyyy-mm-dd:". For example a file named "Flowers:2015-05-16:.png" would be moved to archive on 16.05.2015.
 
+Janhoslide demo: http://janho.dy.fi/demot/janhoslide/
+
 ## Requirements
 In order to get JanhoSlide working, you need to have:
 - A web server (Apache2)
