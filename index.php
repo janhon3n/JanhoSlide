@@ -33,6 +33,12 @@ echo $LAN->frontpagecustomlink;
 ?>
 </a>
 
+<a href="data" id="frontpagedatalink" class="frontpagelink">
+<?
+echo $LAN->frontpagedatalink;
+?>
+</a>
+
 <div id="frontpageversioninfo">
 Version 1.0
 Last modified 6.2.2015
