@@ -8,7 +8,7 @@ With JanhoSlide you can easily create a simple slide show in your web browser. A
 JanhoSlide features in its current version:
 - Simple web interface.
 - A Default show and a Custom show where you can quickly modify the show for your liking.
-- Easy ways to add/remove images and videos to/from your show.
+- Easy way to add/remove images and videos to/from your show.
 - Way to set the last date an image/video will be shown.
 - Html5 image and video usage. All formats that the clients browser supports should work.
 - English and Finnish language support.
@@ -21,7 +21,7 @@ Janhoslide demo: http://janho.dy.fi/demot/janhoslide/
 ## Requirements
 In order to get JanhoSlide working, you need to have:
 - A web server (for example Apache2)
-- Php installed on that server
+- Php installed and configured correctly on that server
 
 
 ## Installation
@@ -32,6 +32,3 @@ JanhoSlide is coded in Php and can be installed simply by copying the folder int
 3. Configure the config.php file.
 4. Move the images and videos you want to show into the right folders. (/images, /videos)
 5. Test your JanhoSlide with a web browser.
-
-(An easy way to make your media folders accessible would be to install a Samba server on that server and create symbolic links from the share to JanhoSlides media folders. Just a suggestion.)
-
