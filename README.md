@@ -29,6 +29,7 @@ JanhoSlide is coded in Php and can be installed simply by copying the folder int
 
 1. Download the zip file.
 2. Unpack it and move it to your website. (/var/www/JanhoSlide in Linux for example)
-3. Configure the config.php file.
-4. Move the images and videos you want to show into the right folders. (/images, /videos)
-5. Test your JanhoSlide with a web browser.
+3. Make sure the folder has the right permissions so the web server can access and modify files.
+4. Configure the config.php file.
+5. Move the images and videos you want to show into the right folders. (/images, /videos)
+6. Test your JanhoSlide with a web browser.
