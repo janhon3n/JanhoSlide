@@ -29,7 +29,7 @@ if(isset($_FILES['newfile'])){
         } else {
                 $newfilename = $_FILES['newfile']['name'];
         }
-        move_uploaded_file($_FILES['newfile']['tmp_name'], $path.'/'.$newfilename) or die("ERROR UPL$
+        move_uploaded_file($_FILES['newfile']['tmp_name'], $path.'/'.$newfilename) or die("ERROR UPLOADING FILE");
 }
 ?>
 <head>
@@ -59,11 +59,10 @@ echo '<h2>'.$LAN->datapagesendnewheader.'</h2>';
 ?>
 <form method="post" action="index.php" enctype="multipart/form-data">
 <?
-echo $LAN->datapagesendnewfile.'<input class="datapagesendnewinput" type="file" name="newfile" accep$
-<input type="checkbox" id="datapagesendnewcheckbox" name="setlastshowdate" value="1">'.$LAN->datapag$
+echo $LAN->datapagesendnewfile.'<input class="datapagesendnewinput" type="file" name="newfile" accept="image/*,video/*"><br><br>
+<input type="checkbox" id="datapagesendnewcheckbox" name="setlastshowdate" value="1">'.$LAN->datapagesendnewcheckbox.'<br>
 <div  id="datapagesendnewsetlastdate" style="opacity:0.5;">
-'.$LAN->datapagesendnewdate.'<input disabled="true" value="2015-01-01" id="datapagesendnewsetlastdat$
-
+'.$LAN->datapagesendnewdate.'<input disabled="true" value="2015-01-01" id="datapagesendnewsetlastdateinput" class="datapagesendnewinput" type="date" name="lastshowdate"><br>';
 ?>
 </div>
 <input class="datapagesendnewinput" style="width:100px;height:25px;" type="submit">
@@ -82,13 +81,14 @@ for($i = 2; $i < count($images); $i++){
 
         <div class="datapageelementoptions">
         <a href="../'.$IMG.'/'.$images[$i].'">
-        <img title="'.$LAN->datapageelementoptionsshowfull.'" class="datapageelementoptionsimage" sr$
+        <img title="'.$LAN->datapageelementoptionsshowfull.'" class="datapageelementoptionsimage" src="dataimg/showfull.png">
         </a>
         <a href="?del='.$images[$i].'&delf='.$IMG.'">
-        <img title="'.$LAN->datapageelementoptionsdelete.'" class="datapageelementoptionsimage" src=$
+        <img title="'.$LAN->datapageelementoptionsdelete.'" class="datapageelementoptionsimage" src="dataimg/delete.png">
         </a>
         </div>
         </div>';
+
 }
 ?>
 </div>
@@ -106,10 +106,10 @@ for($i = 2; $i < count($videos); $i++){
 
         <div class="datapageelementoptions">
         <a href="../'.$VID.'/'.$videos[$i].'">
-        <img title="'.$LAN->datapageelementoptionsshowfull.'" class="datapageelementoptionsimage" sr$
+        <img title="'.$LAN->datapageelementoptionsshowfull.'" class="datapageelementoptionsimage" src="dataimg/showfull.png">
         </a>
         <a href="?del='.$videos[$i].'&delf='.$VID.'">
-        <img title="'.$LAN->datapageelementoptionsdelete.'" class="datapageelementoptionsimage" src=$
+        <img title="'.$LAN->datapageelementoptionsdelete.'" class="datapageelementoptionsimage" src="dataimg/delete.png">
         </a>
         </div>
         </div>';
