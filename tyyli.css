@@ -55,12 +55,29 @@ margin-right:10px;
 }
 
 
-#datapagesendnew{
-margin-top:15px;
+#datapagereturn{
+text-align:right;
+margin-right:5px;
 }
+#datapagereturnlink{
+color:#EEEEEE;
+}
+#datapagereturnlink:hover{
+color:#BBBBBB;
+}
+#datapagesendnew{
+}
+.datapagesendnewinput{
+margin:5px;
+}
+#datapagesendnewsetlastdate{
+margin-left:40px;
+}
+
 #datapageimages{
 margin-top:15px;
 }
+
 .datapageimageelement{
 display:inline-block;
 height:200px;
@@ -95,4 +112,3 @@ margin:2px;
 .datapagevideoelement{
 display:inline-block;
 }
-
