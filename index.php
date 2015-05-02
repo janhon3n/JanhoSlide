@@ -21,19 +21,19 @@ echo $LAN->frontpagetitle;
 ?>
 </h1>
 
-<a href="default" id="frontpagedefaultlink" class="frontpagelink">
+<a href="default/" id="frontpagedefaultlink" class="frontpagelink">
 <?
 echo $LAN->frontpagedefaultlink;
 ?>
 </a>
 
-<a href="custom" id="frontpagecustomlink" class="frontpagelink">
+<a href="custom/" id="frontpagecustomlink" class="frontpagelink">
 <?
 echo $LAN->frontpagecustomlink;
 ?>
 </a>
 
-<a href="data" id="frontpagedatalink" class="frontpagelink">
+<a href="data/" id="frontpagedatalink" class="frontpagelink">
 <?
 echo $LAN->frontpagedatalink;
 ?>
