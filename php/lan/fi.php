@@ -1,4 +1,4 @@
-<?
+<?php
 $LAN = (object) array(
         'frontpagetitle' => 'JanhoSlide',
         'frontpagedefaultlink' => 'Normaali esitys',

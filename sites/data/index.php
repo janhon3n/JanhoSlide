@@ -1,21 +1,26 @@
-<?
-require '../config.php';
+<?php
+$ROOTPath = '../../';
+$PHPPath = $ROOTPath . 'php/';
+$ASSETSPath = $ROOTPath . 'assets/';
+require $PHPPath . 'config.php';
+require $PHPPath . 'head.php';
+
 
 if(isset($_GET['del'])){
-        if(!file_exists('../'.$ARC)){
-                mkdir('../'.$ARC);
+        if(!file_exists($ROOTPath . $ARC)){
+                mkdir($ROOTPATH . $ARC);
         }
-        rename('../'.$_GET['delf'].'/'.$_GET['del'], '../'.$ARC.'/'.$_GET['del']);
+        rename($ROOTPath . $_GET['delf'] . '/' . $_GET['del'], $ROOTPath . $ARC . '/' . $_GET['del']);
 }
 
 if(isset($_FILES['newfile'])){
         $filetype = substr($_FILES['newfile']['type'], 0, 5);
         switch($filetype){
                 case 'image':
-                  $path = '../'.$IMG;
+                  $path = $ROOTPath . $IMG;
                   break;
                 case 'video':
-                  $path = '../'.$VID;
+                  $path = $ROOTPath . $VID;
                   break;
                 default:
                   die("ERROR UPLOADING FILE");
@@ -32,33 +37,20 @@ if(isset($_FILES['newfile'])){
         move_uploaded_file($_FILES['newfile']['tmp_name'], $path.'/'.$newfilename) or die("ERROR UPLOADING FILE");
 }
 ?>
-<head>
-<title>
-<?
-echo $LAN->datapagetitle;
-?>
-</title>
-
-<meta charset="utf8">
-<link rel="shortcut icon" href="../janhoicon.png">
-<link rel="stylesheet" href="../tyyli.css">
-<script src="../jquery/jquery-1.11.2.js">
-</script>
-</head>
 
 <body>
 <div id="datapagereturn">
-<?
-echo '<a id="datapagereturnlink" href="../">'.$LAN->datapagereturnheader.'</a>';
+<?php
+echo '<a id="datapagereturnlink" href="../frontpage/">'.$LAN->datapagereturnheader.'</a>';
 ?>
 </div>
 
 <div id="datapagesendnew">
-<?
+<?php
 echo '<h2>'.$LAN->datapagesendnewheader.'</h2>';
 ?>
 <form method="post" action="index.php" enctype="multipart/form-data">
-<?
+<?php
 echo $LAN->datapagesendnewfile.'<input class="datapagesendnewinput" type="file" name="newfile" accept="image/*,video/*"><br><br>
 <input type="checkbox" id="datapagesendnewcheckbox" name="setlastshowdate" value="1">'.$LAN->datapagesendnewcheckbox.'<br>
 <div  id="datapagesendnewsetlastdate" style="opacity:0.5;">
@@ -70,21 +62,21 @@ echo $LAN->datapagesendnewfile.'<input class="datapagesendnewinput" type="file" 
 </div>
 
 <div id="datapageimages">
-<?
+<?php
 echo '<h2>'.$LAN->datapageimagesheader.'</h2>';
 
-$images = scandir('../'.$IMG);
+$images = scandir($ROOTPath . $IMG);
 for($i = 2; $i < count($images); $i++){
         echo '<div class="datapageimageelement">
 
-        <img class="datapageimage" src="../'.$IMG.'/'.$images[$i].'">
+        <img class="datapageimage" src="' . $ROOTPath . $IMG . '/' . $images[$i].'">
 
         <div class="datapageelementoptions">
-        <a href="../'.$IMG.'/'.$images[$i].'">
-        <img title="'.$LAN->datapageelementoptionsshowfull.'" class="datapageelementoptionsimage" src="dataimg/showfull.png">
+        <a href="' . $ROOTPath . $IMG . '/' . $images[$i].'">
+        <img title="'.$LAN->datapageelementoptionsshowfull.'" class="datapageelementoptionsimage" src="' . $ASSETSPath . 'dataimg/showfull.png">
         </a>
         <a href="?del='.$images[$i].'&delf='.$IMG.'">
-        <img title="'.$LAN->datapageelementoptionsdelete.'" class="datapageelementoptionsimage" src="dataimg/delete.png">
+        <img title="'.$LAN->datapageelementoptionsdelete.'" class="datapageelementoptionsimage" src="' . $ASSETSPath . 'dataimg/delete.png">
         </a>
         </div>
         </div>';
@@ -93,19 +85,19 @@ for($i = 2; $i < count($images); $i++){
 ?>
 </div>
 <div id="datapagevideos">
-<?
+<?php
 echo '<h2>'.$LAN->datapagevideosheader.'</h2>';
 
-$videos = scandir('../'.$VID);
+$videos = scandir($ROOTPath . $VID);
 for($i = 2; $i < count($videos); $i++){
         echo '<div class="datapagevideoelement">
 
         <video class="datapagevideo" height="200" controls>
-          <source src="../'.$VID.'/'.$videos[$i].'">
+          <source src="' . $ROOTPath . $VID . '/' . $videos[$i].'">
         </video>
 
         <div class="datapageelementoptions">
-        <a href="../'.$VID.'/'.$videos[$i].'">
+        <a href="' . $ROOTPath . $VID . '/'.$videos[$i].'">
         <img title="'.$LAN->datapageelementoptionsshowfull.'" class="datapageelementoptionsimage" src="dataimg/showfull.png">
         </a>
         <a href="?del='.$videos[$i].'&delf='.$VID.'">

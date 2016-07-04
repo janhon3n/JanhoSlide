@@ -1,18 +1,10 @@
 <?php
-include '../config.php';
+$ROOTPath = '../../';
+$PHPPath = $ROOTPath . 'php/';
+require $PHPPath . 'config.php';
+require $PHPPath . 'head.php';
 ?>
-<head>
-<title>
-<?
-echo $LAN->custompagetitle;
-?>
-</title>
-<meta charset="utf8">
-<link rel="shortcut icon" href="../janhoicon.png">
-<link rel="stylesheet" href="../tyyli.css">
-<script src="../jquery/jquery-1.11.2.js">
-</script>
-</head>
+
 
 <body style="overflow:hidden;">
 
@@ -47,10 +39,10 @@ $showtime = $_GET['changetime'];
 
 $changetype = $_GET['changetype'];
 
-$imgfolder = '../' . $IMG;
-$videofolder = '../' . $VID;
-$archivefolder = '../' . $ARC;
+$imgfolder = $ROOTPath . $IMG;
+$videofolder = $ROOTPath . $VID;
+$archivefolder = $ROOTPath . $ARC;
 
-require '../code.php';
+require $PHPPath . 'code.php';
 ?>
 </body>

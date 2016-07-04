@@ -110,7 +110,7 @@ echo 'var viive='.$showtime.'
 // === JAVASCRIPT FUNCTIOITA ===
 //dian vaihtamis functio
 function changeSlide(from, to){
-<?
+<?php
 	echo '
 	if(from == ".a1"){
 		from = ".a'.($i-1).'";
