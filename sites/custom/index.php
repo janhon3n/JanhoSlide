@@ -6,9 +6,14 @@ require $PHPPath . 'config.php';
 require $PHPPath . 'head.php';
 ?>
 
-<?php
-echo '
 <body>
+
+<?php
+require $PHPPath . 'header.php';
+
+echo '
+<div class="centered_content">
+
 <form name="slideform" action="slide.php" method="get">
 <h2>
 '.$LAN->restitle.'
@@ -62,7 +67,10 @@ echo $LAN->readybutton;
 echo '" style="height:30px;width:100px;">';
 ?>
 </form>
+</div>
 </body>
+
+
 
 <script>
 function clearAllImg(){
@@ -71,6 +79,7 @@ function clearAllImg(){
         $(".imgslidefromleft").css({opacity: "0.2"});
 	$(".imgnoeffect").css({opacity: "0.2"});
 }
+
 function selectImg(value){
 	clearAllImg();
 	$(".img" + value).css({opacity: "1"});
@@ -79,4 +88,5 @@ function selectImg(value){
 <?php
 echo 'selectImg("'.$CHANGETYPE.'");';
 ?>
+
 </script>

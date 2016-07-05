@@ -8,7 +8,7 @@ require $PHPPath . 'head.php';
 
 if(isset($_GET['del'])){
         if(!file_exists($ROOTPath . $ARC)){
-                mkdir($ROOTPATH . $ARC);
+                mkdir($ROOTPath . $ARC);
         }
         rename($ROOTPath . $_GET['delf'] . '/' . $_GET['del'], $ROOTPath . $ARC . '/' . $_GET['del']);
 }
@@ -39,12 +39,11 @@ if(isset($_FILES['newfile'])){
 ?>
 
 <body>
-<div id="datapagereturn">
 <?php
-echo '<a id="datapagereturnlink" href="../frontpage/">'.$LAN->datapagereturnheader.'</a>';
+require $PHPPath . 'header.php';
 ?>
-</div>
 
+<div class="centered_content">
 <div id="datapagesendnew">
 <?php
 echo '<h2>'.$LAN->datapagesendnewheader.'</h2>';
@@ -54,13 +53,13 @@ echo '<h2>'.$LAN->datapagesendnewheader.'</h2>';
 echo $LAN->datapagesendnewfile.'<input class="datapagesendnewinput" type="file" name="newfile" accept="image/*,video/*"><br><br>
 <input type="checkbox" id="datapagesendnewcheckbox" name="setlastshowdate" value="1">'.$LAN->datapagesendnewcheckbox.'<br>
 <div  id="datapagesendnewsetlastdate" style="opacity:0.5;">
-'.$LAN->datapagesendnewdate.'<input disabled="true" value="2015-01-01" id="datapagesendnewsetlastdateinput" class="datapagesendnewinput" type="date" name="lastshowdate"><br>';
+'.$LAN->datapagesendnewdate.'<input disabled="true" id="datapagesendnewsetlastdateinput" class="datapagesendnewinput" type="date" name="lastshowdate"><br>';
 ?>
 </div>
 <input class="datapagesendnewinput" style="width:100px;height:25px;" type="submit">
 </form>
 </div>
-
+</div>
 <div id="datapageimages">
 <?php
 echo '<h2>'.$LAN->datapageimagesheader.'</h2>';

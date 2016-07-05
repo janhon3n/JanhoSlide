@@ -5,30 +5,38 @@ require $PHPPath . 'head.php';
 ?>
 
 
-<body>
-<h1>
-<?php
-echo $LAN->frontpagetitle;
-?>
-</h1>
 
-<a href="../default/" id="frontpagedefaultlink" class="frontpagelink">
+<body>
+<?php
+require $PHPPath . 'header.php';
+?>
+
+<div id="fplinkcontainter">
+<div class="f1">
+<a href="../default/">
 <?php
 echo $LAN->frontpagedefaultlink;
 ?>
 </a>
+</div>
 
-<a href="../custom/" id="frontpagecustomlink" class="frontpagelink">
+<div class="f1">
+<a href="../custom/">
 <?php
 echo $LAN->frontpagecustomlink;
 ?>
 </a>
+</div>
 
-<a href="../data/" id="frontpagedatalink" class="frontpagelink">
+<div class="f2">
+<a href="../data/">
 <?php
 echo $LAN->frontpagedatalink;
 ?>
 </a>
+</div>
+</div>
+
 
 <div id="frontpageversioninfo">
 Version 1.0
