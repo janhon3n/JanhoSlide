@@ -11,6 +11,9 @@ require $PHPPath . 'head.php';
 <?php
 $width = $WIDTH;
 $height = $HEIGHT;
+$heightfix = 0;
+$widthfix = 0;
+
 $switchtime = $SWITCHTIME;
 $showtime = $SHOWTIME;
 $changetype = $CHANGETYPE;
