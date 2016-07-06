@@ -1,14 +1,22 @@
-$(window).resize(function() {
+var ratiowidth = parseInt($("#slide_container").attr("ratiowidth"));
+var ratioheight = parseInt($("#slide_container").attr("ratioheight"));
+
+var heightfix = 0;
+var widthfix = 0;
+
+var width = $(window).width();
+var height = $(window).height();
+
+
+$(window).resize(function(){
 	updateMargins();
 });
 
 function updateMargins(){
-	var heightfix = 0;
-	var widthfix = 0;
-	var width = $(window).width();
-	var height = $(window).height();
-	var ratiowidth = parseInt($("#slide_container").attr("ratiowidth"));
-	var ratioheight = parseInt($("#slide_container").attr("ratioheight"));
+	widthfix = 0;
+	heightfix = 0;
+	width = $(window).width();
+	height = $(window).height();
 	var newheight = height;
 	var newwidth = width;
 	
@@ -19,8 +27,9 @@ function updateMargins(){
 		newwidth = (height * ratiowidth) / ratioheight;
 		widthfix = (width - newwidth) / 2;
 	}
+
+	console.log("Calculating margins: "+width+" "+height+" "+widthfix+" "+heightfix);
 	
-	console.log(newwidth + " " + newheight + " " +widthfix + " " + heightfix);
 	$("#slide_container").css({
 			"width": newwidth+"px",
 			"height": newheight+"px",

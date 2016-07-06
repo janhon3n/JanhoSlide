@@ -190,7 +190,12 @@ margin-left:40px;
 #datapageimages{
 margin-top:15px;
 }
-
+#datapageimages h2{
+margin-left:5px;
+}
+#datapagevideos h2{
+margin-left:5px;
+}
 .datapageimageelement{
 display:inline-block;
 height:200px;

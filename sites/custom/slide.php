@@ -5,7 +5,6 @@ require $PHPPath . 'config.php';
 require $PHPPath . 'head.php';
 ?>
 
-
 <body style="overflow:hidden;">
 
 <?php

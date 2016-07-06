@@ -4,8 +4,6 @@ require $PHPPath . 'config.php';
 require $PHPPath . 'head.php';
 ?>
 
-
-
 <body>
 <?php
 require $PHPPath . 'header.php';
