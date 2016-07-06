@@ -11,17 +11,21 @@ require $PHPPath . 'head.php';
 <?php
 $width = $WIDTH;
 $height = $HEIGHT;
-$heightfix = 0;
-$widthfix = 0;
 
 $switchtime = $SWITCHTIME;
 $showtime = $SHOWTIME;
 $changetype = $CHANGETYPE;
 
+$fixratio = $FIXRATIO;
+$ratiowidth = $TARGET_RATIO_WIDTH;
+$ratioheight = $TARGET_RATIO_HEIGHT;
+$fullwindow = $FULLWINDOW;
+
 $imgfolder = $ROOTPath . $IMG;
 $videofolder = $ROOTPath . $VID;
 $archivefolder = $ROOTPath . $ARC;
 
+include $PHPPath . 'archiving.php';
 require $PHPPath . 'code.php';
 ?>
 

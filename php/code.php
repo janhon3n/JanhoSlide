@@ -1,46 +1,33 @@
-
 <?php
-//scripti joka siirtää kuvat toiseen kansioon jos niiden päivämäärä on ylitetty. Päivämäärät merkitaan tiedostonimeen ;vvvv-kk-pp;
-$kuvatkansio = myScandir($imgfolder);
-$o = 2;
-while(isset($kuvatkansio[$o])) {
-        list($turha, $parasta_ennen, $turha2) = explode(":", $kuvatkansio[$o]);
-
-        $tanaan = date("Y-m-d", time());
-
-        $parasta_ennen_timestamp = strtotime($parasta_ennen);
-        $tanaan_timestamp = strtotime($tanaan);
-
-        //jos vanhentumispäivämäärä on ylitetty
-        if(!empty($parasta_ennen_timestamp) && $tanaan_timestamp > $parasta_ennen_timestamp) {
-                //siirrä kuva pois kuvatkansiosta
-                rename($imgfolder . '/' . $kuvatkansio[$o], $archivefolder . '/' . $kuvatkansio[$o]);
+$heightfix = 0;
+$widthfix = 0;
+//calculating the margins for the initial show
+//if $fullwindow and $fixratio margins will be 
+//calculated constantly in javascript
+if($fixratio){
+	//Viewport size too high => Black space above and under
+        if($width * $ratioheight <= $height * $ratiowidth){
+                $newheight = ($width * $ratioheight) / $ratiowidth;
+                $heightfix = ($height - $newheight) / 2;
+				$height = $newheight;
+	//Viewport size too high => Black space above and under
+        } else if($width * $ratioheight > $height * $ratiowidth){
+                $newwidth = ($height * $ratiowidth) / $ratioheight;
+                $widthfix = ($width - $newwidth) / 2;
+				$width = $newwidth;
         }
-        ++$o;
-}
-
-// sama homma videoille
-$videokansio = myScandir($videofolder);
-$o = 2;
-while(isset($videokansio[$o])) {
-        list($turha, $parasta_ennen, $turha2) = explode(":", $videokansio[$o]);
-
-	$tanaan = date("Y-m-d", time());
-
-        $parasta_ennen_timestamp = strtotime($parasta_ennen);
-        $tanaan_timestamp = strtotime($tanaan);
-
-        //jos vanhentumispäivämäärä on ylitetty
-        if(!empty($parasta_ennen_timestamp) && $tanaan_timestamp > $parasta_ennen_timestamp) {
-                //siirrä kuva pois kuvatkansiosta
-                rename($videofolder . '/' . $videokansio[$o], $archivefolder . '/' . $videokansio[$o]);
-        }
-        ++$o;
 }
 
 
 
-echo '<div id="slide_container" showtime="'.$showtime.'" switchtime="'.$switchtime.'" style="width:'.$width.';height:'.$height.';margin-left:'.$widthfix.';margin-top:'.$heightfix.';">';
+echo '<div id="slide_container" showtime="'.$showtime.'" switchtime="'.$switchtime.'" ratiowidth="'.$ratiowidth.'" ratioheight="'.$ratioheight.'" ';
+
+if($fullwindow){
+	echo 'style="width:100%;height:100%;margin-left:'.$widthfix.';margin-top:'.$heightfix.';">';
+} else {
+	echo 'style="width:'.$width.';height:'.$height.';margin-left:'.$widthfix.';margin-top:'.$heightfix.';">';
+}
+
 
 //Looppi jossa luodaan kuvat kansiossa oleville kuville omat elementit.
 $kuvatkansio = myScandir($imgfolder); //scandir palauttaa taulukon joissa [0] = . ja [1] = .. joten aloitetaan loopit aina arvolla 2.
@@ -104,6 +91,9 @@ switch($changetype){
 }
 
 echo '<script src="../../js/slide.js"></script>';
+if($fullwindow && $fixratio){
+	echo '<script src="../../js/updatemarginfix.js"></script>';
+}
 
 //php functiota ym.
 function file_get_contents_utf8($fn) {

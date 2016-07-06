@@ -126,8 +126,11 @@ form{
 	margin-bottom:25px;
 }
 #customform .inputline{
-	margin:2px;
+	margin:3px;
 	margin-left:10px;
+}
+#customform .inputline[disabl="disabl"]{
+	opacity:0.5;
 }
 #customform .label1{
 	display:inline-block;
@@ -137,6 +140,7 @@ form{
 	display:inline-block;
 	width:120px;
 }
+
 #customform .changeimg{
 	margin:4px;
 	cursor:pointer;

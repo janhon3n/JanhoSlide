@@ -18,4 +18,27 @@ $(document).ready(function(){
 			$("#customform input#changetype").val($(this).attr("changetype"));
 		}
 	});
+	
+	
+	$("#customform input[name='fullwindow']").change(function(){
+		if(this.checked){
+			$("#customform input[name='width']").prop('disabled', true).parent().attr("disabl", "disabl");
+			$("#customform input[name='height']").prop('disabled', true).parent().attr("disabl", "disabl");
+		} else {
+			$("#customform input[name='width']").prop('disabled', false).parent().attr("disabl", "no");
+			$("#customform input[name='height']").prop('disabled', false).parent().attr("disabl", "no");
+			
+		}
+	});
+	
+	$("#customform input[name='fixratio']").change(function(){
+		if(!this.checked){
+			$("#customform input[name='ratiowidth']").prop('disabled', true);
+			$("#customform input[name='ratioheight']").prop('disabled', true).parent().attr("disabl", "disabl");
+		} else {
+			$("#customform input[name='ratiowidth']").prop('disabled', false);
+			$("#customform input[name='ratioheight']").prop('disabled', false).parent().attr("disabl", "no");
+			
+		}
+	});
 });

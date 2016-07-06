@@ -1,7 +1,7 @@
 <head>
 <title>
 <?php
-echo $LAN->defaultpagetitle;
+echo $LAN->title;
 ?>
 </title>
 <meta charset="utf8">

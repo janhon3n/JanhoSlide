@@ -29,5 +29,4 @@ $(document).ready(function(){
 	var switcher = setInterval(function(){
 		switchToNext();
 	}, showtime);
-
 });

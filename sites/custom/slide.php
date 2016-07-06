@@ -9,35 +9,33 @@ require $PHPPath . 'head.php';
 <body style="overflow:hidden;">
 
 <?php
+$width = $_GET['width'];
+$height = $_GET['height'];
 
-$heightfix = 0;
-$widthfix = 0;
-
-if($_GET['fixratio'] == "yes"){
-	//Viewport size too high => Black space above and under
-        if($_GET['width'] * 9 <= $_GET['height'] * 16){
-                $width = $_GET['width'];
-                $height = ($width * 9) / 16;
-                $heightfix = ($_GET['height'] - $height) / 2;
-	//Viewport size too high => Black space above and under
-        } else if($_GET['width'] * 9 > $_GET['height'] * 16){
-                $height = $_GET['height'];
-                $width = ($height * 16) / 9;
-                $widthfix = ($_GET['width'] - $width) / 2;
-        }
-} else {
-        $width = $_GET['width'];
-        $height = $_GET['height'];
-}
 $switchtime = $_GET['changespeed'];
 $showtime = $_GET['changetime'];
-
 $changetype = $_GET['changetype'];
+
+if($_GET['fixratio'] == "yes"){
+	$fixratio = true;
+} else {
+	$fixratio = false;
+}
+$ratiowidth = $_GET['ratiowidth'];
+$ratioheight = $_GET['ratioheight'];
+
+
+if($_GET['fullwindow'] == "yes"){
+	$fullwindow = true;
+} else {
+	$fullwindow = false;
+}
 
 $imgfolder = $ROOTPath . $IMG;
 $videofolder = $ROOTPath . $VID;
 $archivefolder = $ROOTPath . $ARC;
 
+include $PHPPath . 'archiving.php';
 require $PHPPath . 'code.php';
 ?>
 </body>
