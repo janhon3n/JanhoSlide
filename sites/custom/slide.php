@@ -25,7 +25,6 @@ if($_GET['fixratio'] == "yes"){
                 $width = ($height * 16) / 9;
                 $widthfix = ($_GET['width'] - $width) / 2;
         }
-//jos ei
 } else {
         $width = $_GET['width'];
         $height = $_GET['height'];

@@ -14,79 +14,95 @@ require $PHPPath . 'header.php';
 echo '
 <div class="centered_content">
 
-<form name="slideform" action="slide.php" method="get">
+<form id="customform" action="slide.php" method="get">
+
+
+<div class="part_container">
 <h2>
 '.$LAN->restitle.'
 </h2>
+
+<div class="inputline">
 <label class="label1">
 '.$LAN->reswidth.'
 </label>
 <input type="number" name="width" min="1" max="3840" value="'.$WIDTH.'">
-<br>
+</div>
+<div class="inputline">
 <label class="label1">
 '.$LAN->resheight.'
 </label>
 <input type="number" name="height" min="1" max="2160" value="'.$HEIGHT.'">
-<br><br>
+</div>
+<br>
+<div class="inputline">
 <input type="checkbox" name="fixratio" value="yes">
 '.$LAN->reskeepratio.'
-<br><br>
+</div>
+</div>
+
+<div class="part_container">
 <h2>
 '.$LAN->timetitle.'
 </h2>
+
+<div class="inputline">
 <label class="label2">
 '.$LAN->timeswitchtime.'
 </label>
 <input type="number" name="changespeed" min="1" max="10000" value="'.$SWITCHTIME.'">
 (ms) -
 '.$LAN->timeswitchinfo.'
-<br>
+</div>
+
+<div class="inputline">
 <label class="label2">
 '.$LAN->timeshowtime.'
 </label>
 <input type="number" name="changetime" min="1" max="100000" value="'.$SHOWTIME.'">
 (ms) -
 '.$LAN->timeshowinfo.'
-<br><br>
+</div>
+</div>
+
+<div class="part_container">
 <h2>
 '.$LAN->switchtitle.'
 </h2>
 ';
 
+$changeTypes = array('fade', 'slidefromright', 'slidefromleft', 'noeffect');
+
 echo '
-<input class="changetype" type="hidden" name="changetype">
-<img class="changeimg imgfade" onclick="selectImg(\'fade\')" src="' . $ASSETSPath . 'customimg/fade.png">
-<img class="changeimg imgslidefromright" onclick="selectImg(\'slidefromright\')" src="' . $ASSETSPath . 'customimg/slidefromright.png">
-<img class="changeimg imgslidefromleft" onclick="selectImg(\'slidefromleft\')" src="' . $ASSETSPath . 'customimg/slidefromleft.png">
-<img class="changeimg imgnoeffect" onclick="selectImg(\'noeffect\')" src="' . $ASSETSPath . 'customimg/noeffect.png">
-<br><br>
+<input type="hidden" id="changetype" name="changetype" value="'.$CHANGETYPE.'">
+';
+
+foreach($changeTypes as $ct){
+	echo '<img class="changeimg" ';
+	if($ct == $CHANGETYPE){
+		echo 'chosenone="chosenone"';
+	} else {
+		echo 'chosenone="no"';
+	}
+	echo 'changetype="'.$ct.'" src="' . $ASSETSPath . 'customimg/' . $ct . '.png">';
+}
+
+echo '
+</div>
 ';
 
 echo '<input type="submit" value="';
 echo $LAN->readybutton;
-echo '" style="height:30px;width:100px;">';
+echo '">';
 ?>
 </form>
 </div>
 </body>
 
 
-
-<script>
-function clearAllImg(){
-        $(".imgfade").css({opacity: "0.2"});
-        $(".imgslidefromright").css({opacity: "0.2"});
-        $(".imgslidefromleft").css({opacity: "0.2"});
-	$(".imgnoeffect").css({opacity: "0.2"});
-}
-
-function selectImg(value){
-	clearAllImg();
-	$(".img" + value).css({opacity: "1"});
-	$(".changetype").val(value);
-}
 <?php
-echo 'selectImg("'.$CHANGETYPE.'");';
-?>
-
+echo '
+<script src="' . $ROOTPath . 'js/customformjs.js">
 </script>
+';
+

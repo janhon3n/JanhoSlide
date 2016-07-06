@@ -20,8 +20,7 @@ h1{
 }
 h2{
 	font-size:20px;
-	margin:15px;
-	margin-bottom:5px;
+	margin-bottom:10px;
 }
 
 
@@ -118,20 +117,46 @@ h2{
 	margin:0px;
 	padding:15px;
 }
-.label1{
-	display:inline-block;
-	width:70px;
-}
-.label2{
-	display:inline-block;
-	width:120px;
-}
+
+/* Custom form */
 form{
 	padding:15px;
 }
-.changeimg{
-	margin-right:10px;
+#customform .part_container{
+	margin-bottom:25px;
+}
+#customform .inputline{
+	margin:2px;
+	margin-left:10px;
+}
+#customform .label1{
+	display:inline-block;
+	width:70px;
+}
+#customform .label2{
+	display:inline-block;
+	width:120px;
+}
+#customform .changeimg{
+	margin:4px;
 	cursor:pointer;
+	opacity:0.1;
+	-webkit-transition:opacity 0.2s, box-shadow 0.2s; /* Safari */
+    transition:opacity 0.2s, box-shadow 0.2s;
+}
+
+#customform .changeimg:hover{
+	box-shadow:0px 0px 15px white;
+	opacity:0.4;
+}
+#customform .changeimg[chosenone="chosenone"]{
+	opacity:1;
+}
+#customform input[type="submit"]{
+	padding:5px;
+	font-size:16px;
+	font-weight:bold;
+	width:100px;
 }
 
 
