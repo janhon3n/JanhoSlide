@@ -1,4 +1,4 @@
-function doTheSwitch(fromEl, toEl){
+function doTheSwitch(fromEl, toEl, switchtime){
 	toEl.show();
 	fromEl.hide();
 	toEl.show();

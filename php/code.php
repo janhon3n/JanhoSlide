@@ -2,7 +2,7 @@
 $heightfix = 0;
 $widthfix = 0;
 //calculating the margins for the initial show
-//if $fullwindow and $fixratio margins will be 
+//if $fullwindow and $fixratio margins will be
 //calculated constantly in javascript
 if($fixratio){
 	//Viewport size too high => Black space above and under
@@ -36,45 +36,24 @@ foreach($kuvatkansio as $kuva){
 	echo '<img class="slide imgslide" src="'.$imgfolder.'/'.$kuva.'">';
 }
 
-
-
-//Looppi jossa luodaan videot kansiossa oleville videoille omat .a luokat eli diat.
-/*
+//Looppi jossa luodaan videot kansiossa oleville videoille omat elementit
 $videotkansio = myScandir($videofolder);
-$u = 2;
-$ekavideo = $i;
-$videonumero = 1;
-$videopituus = array(1);
-
-
-while(isset($videotkansio[$u])) {
-
-        list($turha3, $formaatti) = explode(".", $videotkansio[$u]);
-        $id = "video$videonumero";
-        echo '<video width="'.$width.'" height="'.$height.'" style="position:absolute;display:none;" class="a'.$i.' aelement" id="'.$id.'"';
-	// Jos videoihin ei haluta ääntä niin muteta ne
+foreach($videotkansio as $video){
+	echo '
+	<video class="slide videoslide" autoplay ';
 	if(!$VIDEOSOUND){
 		echo 'muted';
 	}
-	echo '> <source src="' . $videofolder . '/' . $videotkansio[$u] . '" <type="video/'.$formaatti.'"> </video>';
-        echo "\n";
-
-        //Käyetään ffmpeg:tä videoiden pituuksien hakemiseen ja tallennetaan ne muuttujiin
-        $polku = $videofolder . '/' . $videotkansio[$u];
-        $cmd = shell_exec("ffmpeg -i \"{$polku}\" 2>&1");
-        $haku='/Duration: (.*?),/';
-        preg_match($haku, $cmd, $tulos);
-
-        $videopituus[] = $tulos[1];
-
-        ++$u;
-        ++$i;
-        ++$videonumero;
+	echo '>
+	<source src="'.$videofolder.'/'.$video.'">
+	</video>
+	';
 }
-*/
+
 
 echo '</div>';
 
+//include the right javascript file for the switchtype
 switch($changetype){
 	case 'fade':
 		echo '<script src="../../js/switches/fadeSwitch.js"></script>';
@@ -87,18 +66,19 @@ switch($changetype){
 		break;
 	case 'noeffect':
 		echo '<script src="../../js/switches/noEffectSwitch.js"></script>';
-		break;	
+		break;
 }
 
+//include the javascript that makes the magic happen
 echo '<script src="../../js/slide.js"></script>';
 if($fullwindow && $fixratio){
 	echo '<script src="../../js/updatemarginfix.js"></script>';
 }
 
-//php functiota ym.
+
+//php functions etc.
 function file_get_contents_utf8($fn) {
      $content = file_get_contents($fn);
       return mb_convert_encoding($content, 'UTF-8',
           mb_detect_encoding($content, 'UTF-8, ISO-8859-1', true));
 }
-

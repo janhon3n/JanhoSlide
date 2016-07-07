@@ -1,5 +1,4 @@
-function doTheSwitch(fromEl, toEl){
-	var switchtime = parseInt($("#slide_container").attr("switchtime"));
+function doTheSwitch(fromEl, toEl, switchtime){
 	toEl.css('left', fromEl.width());
 	fromEl.css('left', 0);
 	
